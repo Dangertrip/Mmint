@@ -48,11 +48,13 @@ def run(parser):
     fig.subplots_adjust(left=0.15)
     hm=ax.pcolor(col_max,cmap=plt.cm.OrRd)
     plt.colorbar(hm)
+    plt.xticks(rotation=90)
     ax.set_xticks(np.arange(0,labelnum)+0.5)
     ax.set_yticks(np.arange(0,labelnum)+0.5)
     from decimal import Decimal
     fs = 9
-    fs -= len(labelname)//10 + len(labelname)//30 + len(labelname)//50
+    fs -= len(labelname)//10 + len(labelname)//21 + len(labelname)//31 + len(labelname)//51
+    if fs<1: fs=1
     for i in np.arange(0,labelnum):
         for j in np.arange(0,labelnum):
             plt.text(i+0.5,j+0.2,str(Decimal(str(col_max[i,j])).quantize(Decimal('0.00'))),ha='center', va='bottom',fontsize=fs)
@@ -62,7 +64,7 @@ def run(parser):
     ax.set_yticklabels(labelname,minor=False)
     plt.savefig(args.output+'_heatmap.pdf', bbox_inches="tight")
 #==========================================================================================
-
+'''
     g = sns.PairGrid(df)
     filename = 'df.'+str(time.time())+'.txt'    
     np.savetxt(filename,df)
@@ -72,7 +74,7 @@ def run(parser):
     g.map_offdiag(sns.kdeplot, cmap="OrRd", n_levels=20,shade=True,gridsize=int(args.gridsize))
     pylab.savefig(args.output+".pdf")
     os.system('rm '+filename)
-
+'''
 if __name__=="__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-m','--methfile',help="The output from mcall",nargs='*', metavar="FILE")
