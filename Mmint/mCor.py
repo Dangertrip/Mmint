@@ -43,7 +43,7 @@ def run(parser):
     labelname, labelnum = args.label, len(args.label)
     col_max=df.corr().values
     plt.style.use('ggplot')
-    fig = plt.figure()
+    fig = plt.figure(figsize=(9,8))
     ax = plt.subplot()
     fig.subplots_adjust(left=0.15)
     hm=ax.pcolor(col_max,cmap=plt.cm.OrRd)
@@ -51,14 +51,16 @@ def run(parser):
     ax.set_xticks(np.arange(0,labelnum)+0.5)
     ax.set_yticks(np.arange(0,labelnum)+0.5)
     from decimal import Decimal
+    fs = 9
+    fs -= len(labelname)//10 + len(labelname)//30 + len(labelname)//50
     for i in np.arange(0,labelnum):
         for j in np.arange(0,labelnum):
-            plt.text(i+0.5,j+0.2,str(Decimal(str(col_max[i,j])).quantize(Decimal('0.00'))),ha='center', va='bottom')
+            plt.text(i+0.5,j+0.2,str(Decimal(str(col_max[i,j])).quantize(Decimal('0.00'))),ha='center', va='bottom',fontsize=fs)
     ax.xaxis.tick_bottom()
     ax.yaxis.tick_left()
-    ax.set_xticklabels(labelname,minor=False,fontsize=20)
-    ax.set_yticklabels(labelname,minor=False,fontsize=20)
-    plt.savefig(args.output+'_heatmap.pdf')
+    ax.set_xticklabels(labelname,minor=False)
+    ax.set_yticklabels(labelname,minor=False)
+    plt.savefig(args.output+'_heatmap.pdf', bbox_inches="tight")
 #==========================================================================================
 
     g = sns.PairGrid(df)
