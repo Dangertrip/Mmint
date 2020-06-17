@@ -51,7 +51,7 @@ def run(parser):
         tsne = TSNE(n_components=2)
         X_r = tsne.fit_transform(xx)
 
-    colors = cm.rainbow(np.linspace(0, 1, len(flat_sample_name)))
+    colors = cm.rainbow(np.linspace(0, 1, 30))
     fig=plt.figure()
     plt.subplot(111)
     plt.xlim(np.min(X_r[:,0])-0.2*np.abs(np.min(X_r[:,0])),np.max(X_r[:,0])+0.2*np.abs(np.max(X_r[:,0])))
@@ -59,7 +59,7 @@ def run(parser):
     fig.subplots_adjust(left=0.1,right=0.8)
     markers = ['o', '^','v','<','>','1','2', '3','4','8','s','P','p', '*','H','h','x','X','D', 'd','|','_','+']
     for i,label in enumerate(extend_label):
-        plt.scatter(X_r[i,0], X_r[i,1], c=colors[ind[i]], label=label, alpha=0.8, marker=markers[ind[i]],s=80)
+        plt.scatter(X_r[i,0], X_r[i,1], c=np.array([colors[ind[i]%30]]), label=label, alpha=0.8, marker=markers[ind[i]%23],s=80)
     plt.legend(loc='center left', bbox_to_anchor=(1.04, 0.5))
     plt.savefig(args.output+'.pdf', bbox_inches="tight")
 

@@ -28,6 +28,8 @@ def formdata(files,cov=0,bedfile=''):
     for key in dic:
         if len(dic[key])==len(files):
             result.append(dic[key])
+    if len(result)==0:
+        raise Exception("No common CpG found in given area of given samples!")
     return result
 
 
