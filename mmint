@@ -152,7 +152,7 @@ def add_horizonalHeatmap_parsers(s):
 
 
 def add_multibw2bed_parsers(s):
-    parser = s.add_parser("multibw2Bed",help="This script generate the curve plot with multi-bigwig singal files against interested regions (bed file). Input files are multiple bigwig files and one bed (or multiple bed files) file.")
+    parser = s.add_parser("multibw2Bed",help="This script generate the curve plot with multi-bigwig singal files against interested regions (bed file). Input files are multiple bigwig files and one bed (or multiple bed files) file.if there is only on bed file as input, all the bw signals will be calculated based on this one bed file; if there are multiple input bed files, the bed file number must equal to the number of bw files, and the bw signal will be calculated on each of the bed file based on the input bw and bed file order (bw1 bw2 bed1 bed2: bw1 signal will calculated based on bed1 and bw2 signal will calculated based on bed2)")
     parser.add_argument('-bw','--bigwig',help="bigwig or bed for the computeMatrix", nargs="*",metavar="FILE")
     parser.add_argument('-bed','--bed',help="the regions to plot", metavar="FILE", nargs="*")
     parser.add_argument('-after','--dnregions',help="downstream regions to plot", default=1000,type=int)

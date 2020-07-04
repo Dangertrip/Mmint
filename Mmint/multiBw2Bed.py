@@ -93,7 +93,10 @@ def run(parser):
     if data_type==3:
         ax2 = ax1.twinx()
     plt.xlim(0,len(y[0]))
+    plt.ylim(0,1)
     # print(data_type, args.marker)
+    
+    curves = []
     if data_type!=3:
         for i in range(len(y)):
             ax1.plot(x,y[i],color=colours[i],linewidth=2,label=args.rowlabels[i])
@@ -101,12 +104,15 @@ def run(parser):
         for i in range(len(y)):
             # print(i, args.marker[i],args.marker)
             if int(args.marker[i])==0:
-                ax1.plot(x,y[i],color=colours[i],linewidth=2,label=args.rowlabels[i],linestyle='-')
+                ln = ax1.plot(x,y[i],color=colours[i],linewidth=2,label=args.rowlabels[i],linestyle='-')
             else:
-                ax2.plot(x,y[i],color=colours[i],linewidth=2,label=args.rowlabels[i],linestyle=(0, (5, 10)))
+                ln = ax2.plot(x,y[i],color=colours[i],linewidth=2,label=args.rowlabels[i],linestyle=(0, (5, 10)))
+            curves.append(ln[0])
+    
     
     if data_type==3:
-        plt.legend(loc='center left', bbox_to_anchor=(1.14, 0.5))   
+        curvesLabel = [c.get_label() for c in curves]
+        plt.legend(curves, curvesLabel, loc='center left', bbox_to_anchor=(1.14, 0.5))   
     else:
         plt.legend(loc='center left', bbox_to_anchor=(1.04, 0.5))
     if args.scaleregion!=0:
