@@ -30,6 +30,9 @@ def formdata(files,cov=0,bedfile=''):
             result.append(dic[key])
     if len(result)==0:
         raise Exception("No common CpG found in given area of given samples!")
+    else:
+        print('Number of processed files: ', len(result[0]))
+        print('Number of CpG sites counted: ', len(result))
     return result
 
 
