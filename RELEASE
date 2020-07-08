@@ -1,3 +1,6 @@
+# 0.0.2.2
+# Fixed axis bug in multiBw2bed
+
 # 0.0.2.1
 # Now Mmint will report number of processed file and number of CpG sites in formdata.
 

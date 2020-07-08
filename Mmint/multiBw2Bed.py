@@ -93,7 +93,7 @@ def run(parser):
     if data_type==3:
         ax2 = ax1.twinx()
     plt.xlim(0,len(y[0]))
-    plt.ylim(0,1)
+    # plt.ylim(0,1)
     # print(data_type, args.marker)
     
     curves = []
