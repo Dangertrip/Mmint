@@ -39,8 +39,8 @@ def run(parser):
     plt.figure()
     plt.ylabel("Distance")
     z=linkage(data,args.linktype)
-    dendrogram(z,no_labels=False,leaf_label_func=lambda x:names[x])
-    plt.savefig(args.output)
+    dendrogram(z,no_labels=False,leaf_label_func=lambda x:names[x], leaf_rotation=90)
+    plt.savefig(args.output+'.pdf')
 
 
     ##python PCA.meth.py -i inputfile -n 5 -r 2 -N A B C D E -o PCA
